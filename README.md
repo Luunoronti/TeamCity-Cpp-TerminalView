@@ -9,12 +9,13 @@ A tiny C++ console app that starts a local HTTP server and reacts to TeamCity we
 
 > Endpoint: `POST /webhook` (default port `9876`)
 
+```
 +---------------------------------
 E-1234 Erosion_Editor_Win64_Dev
 RUNNING (00:05:17)
 by alice
 +---------------------------------
-
+```
 
 If a build is not running, the “status” and “build time” lines are hidden.
 New events push older ones down (simple terminal “ticker”).
