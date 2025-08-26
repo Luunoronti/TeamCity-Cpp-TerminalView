@@ -32,7 +32,7 @@ cd teamcity-webhook-ticker
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j
 ./build/teamcity_ticker --bind 0.0.0.0 --port 9876
-
+```
 
 ### Windows (Visual Studio 2022, no WSL)
 
