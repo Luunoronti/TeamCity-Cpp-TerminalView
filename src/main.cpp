@@ -1,6 +1,24 @@
 // teamcity_ticker - simple console webhook listener
 // Build: see README.md
 
+// --- Windows headers order fix (winsock2 before windows.h) ---
+#ifdef _WIN32
+  #ifndef NOMINMAX
+  #define NOMINMAX
+  #endif
+  #ifndef WIN32_LEAN_AND_MEAN
+  #define WIN32_LEAN_AND_MEAN
+  #endif
+  // Prevent <windows.h> from dragging in <winsock.h>
+  #ifndef _WINSOCKAPI_
+  #define _WINSOCKAPI_
+  #endif
+  #include <winsock2.h>
+  #include <ws2tcpip.h>
+  #include <windows.h>
+#endif
+// --------------------------------------------------------------
+
 #include <algorithm>
 #include <atomic>
 #include <chrono>
@@ -19,14 +37,9 @@
 #include <unordered_set>
 #include <vector>
 
-#ifdef _WIN32
-  #define NOMINMAX
-  #include <windows.h>
-#endif
-
 // third-party single headers (vendored)
-#include "httplib.h"      // https://github.com/yhirose/cpp-httplib (header-only)
-#include "json.hpp"       // https://github.com/nlohmann/json (header-only)
+#include "httplib.h"      // header-only HTTP server
+#include "json.hpp"       // header-only JSON
 using json = nlohmann::json;
 
 using Clock = std::chrono::steady_clock;
